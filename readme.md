@@ -4,6 +4,8 @@ BlackBird, the low-level programming language for continuous variable quantum co
 
 Language documentation is provided by Xanadu [here](https://strawberryfields.readthedocs.io/en/latest/tutorials/blackbird.html).
 
+This package earned an honourable mention in the [Xanadu Software Competition in 2019](https://medium.com/xanaduai/xanadu-software-competition-the-results-are-in-9ccb6a3b591b)!
+
 ## New in Version 1.0.0
 
 - Support for the following BlackBird features:
