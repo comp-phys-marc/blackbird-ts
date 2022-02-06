@@ -1,0 +1,20 @@
+# required metadata at the top of the file
+name StateTeleportation
+# required blackbird API version it targets
+version 1.0
+
+# maximally entangled states
+Squeezed(-{sq}) | 1
+Squeezed({sq}) | 2
+BSgate(pi/4, 0) | (1, 2)
+
+# Alice performs the joint measurement
+# in the maximally entangled basis
+BSgate(pi/4, 0) | (0, 1)
+MeasureX | 0
+MeasureP | 1
+
+# Bob conditionally displaces his mode
+# based on Alice's measurement result
+Xgate(sqrt(2)*q0) | 2
+Zgate(sqrt(2)*q1) | 2

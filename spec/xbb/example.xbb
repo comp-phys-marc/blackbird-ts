@@ -1,0 +1,152 @@
+# Copyright 2019 Xanadu Quantum Technologies Inc.
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# ===========================================
+# Blackbird quantum assembly language example
+# ===========================================
+# Blackbird is case sensitive.
+# Newlines indicate the end of a statement.
+# Like Python, we use # for comments.
+
+# -------------------------------------------
+# Metadata
+# -------------------------------------------
+# At the top of the file, we define:
+#
+# * name: the name of the quantum program,
+# * version: the Blackbird version the script targets
+# * target: (optional) device/simulator target
+#   that the quantum program has been compiled for.
+#
+# In addition, keyword options can be provided for the
+# target using the syntax `(option1=0.34, option2=True)`.
+
+name example
+version 1.0
+
+target Chip0 (shots=10)
+
+# -------------------------------------------
+# Variable declarations
+# -------------------------------------------
+# Variables can be defined anywhere in the file.
+
+# Format for defining variables:
+#   type name = expression
+#
+# Allowed literals:
+#   int: 0, 1, 5
+#   float: 0.43, -0.123, 89.23e-10
+#   complex: 5j, 8-1j, 0.54+0.21j
+#   bool: True, False
+#   str: any ASCII string surrounded by quotes, "sdfds"
+
+int n = +5
+int k = n
+
+float m = -0.5432
+float alpha = 0.5432
+float x = 0.5+0.1
+float Delta = 0.543
+float test = pi
+
+complex beta = 0+5.21j
+complex y = -0.43e-4+0.912j
+complex z = +0.43e-4-0.912j
+
+bool flag = True
+bool flag2 = False
+str name0 = "program1"
+
+# Blackbird allows expressions using the operators:
+#   +, -, *, /, ** (exponentiation)
+# and the intrinsic functions:
+#   exp(), sin(), cos(), sqrt()
+# You can also use PI and previous variable names in your
+# expressions.
+float gamma = 2.0*cos(alpha*pi)
+float test = n**2.0
+
+# we can also define arrays, by specifying 'array' after
+# the variable type.
+
+# Can optionally specify the shape of the array using square
+# brackets directly after the variable name (i.e. U4[4, 4]))
+# but this is optional.
+
+complex array A =
+    -1.0+1.0j, 2.7e5+0.2e-5j
+    -0.1-2j, 0.2-0.1j
+
+float array B[2, 2] =
+    -1.0, 2.7e5
+    -0.1, 0.2
+
+float array C =
+    -0.1, 0.2
+
+# -------------------------------------------
+# Quantum program
+# -------------------------------------------
+
+# Statements have the following form:
+#   Operation(parameters) | modes
+# Depending on the operation, parameters may be optional
+# Parameters can be variables of literals or expressions
+
+Vac | 1
+Fock(2) | 0
+
+Coherent(beta) | 2
+Coherent(alpha**2.0, Delta*sqrt(pi)) | 2
+
+Squeezed(alpha**2.0, Delta*sqrt(pi)) | 2
+
+Thermal(alpha) | 2
+Thermal(0.5) | 2
+
+DisplacedSqueezed(0.4+0.1j, 0.5*3.0, 0.1/2.0) | 0
+
+Catstate(0.4+0.1j) | 0
+Catstate(0.4+0.1j, 1.0) | 0
+
+
+Dgate(0.43, 0.12) | 3
+Dgate(1+2j) | 1
+Sgate(0.43, -0.123) | 2
+Sgate(0.432) | 3
+Rgate(pi) | 2
+Fouriergate | 0
+
+# Multiple modes are specified by comma-separated integers
+
+complex array U4[4, 4] =
+    -0.23191638+0.17828953j,  0.58457815+0.41415933j, -0.05795454-0.46965132j,  0.37146591+0.19811629j
+    +0.42259383+0.56368926j, -0.42219920+0.04735544j, -0.18902308-0.01590913j,  0.33017685+0.42210731j
+    -0.02396850+0.64301446j,  0.09918161+0.36797446j,  0.26993055+0.30341975j, -0.20673325-0.4827536j
+    -0.03456721+0.05347453j, -0.01895343-0.40080457j,  0.75577423-0.06297101j,  0.50490422-0.06966875j
+
+Interferometer(U4) | [0, 1, 2, 3]
+
+GaussianTransform(B) | [0]
+Gaussian(B, C) | [0]
+Gaussian(B) | [0]
+
+# Finish with measurements
+MeasureFock() | 5
+# use a measured register as a gate argument
+Xgate(sqrt(2)*q5) | 1
+Measure | 1
+MeasureHomodyne(0.32) | 2
+MeasureP | 3
