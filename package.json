@@ -1,0 +1,35 @@
+{
+  "name": "blackbird-ts",
+  "version": "1.0.7",
+  "description": "Blackbird, the low-level programming language for continuous-variable quantum computing, implemented in TypeScript.",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp-phys-marc/blackbird-ts.git"
+  },
+  "keywords": [
+    "Quantum",
+    "Programming",
+    "Continuous Variable",
+    "Language"
+  ],
+  "author": "Marcus Edwards",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/comp-phys-marc/blackbird-ts/issues"
+  },
+  "homepage": "https://github.com/comp-phys-marc/blackbird-ts#readme",
+  "dependencies": {
+    "path": "^0.12.7",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.4.0",
+    "@types/node": "^12.7.2",
+    "jasmine": "^3.4.0"
+  }
+}
