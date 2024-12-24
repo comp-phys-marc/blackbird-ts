@@ -170,3 +170,19 @@ http://www.apache.org/licenses/LICENSE-2.0
 ```
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+## How to Cite
+
+If you are using our implementation for research we appreciate if you would read and cite our pre-print at https://arxiv.org/abs/2310.10802.
+
+```
+@misc{edwards2023quantumprogramminglanguageparser,
+      title={Three Quantum Programming Language Parser Implementations for the Web}, 
+      author={Marcus Edwards},
+      year={2023},
+      eprint={2310.10802},
+      archivePrefix={arXiv},
+      primaryClass={cs.PL},
+      url={https://arxiv.org/abs/2310.10802}, 
+}
+```
