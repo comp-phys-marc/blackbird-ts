@@ -1,5 +1,7 @@
 # Blackbird TypeScript
 
+![NPM Downloads](https://img.shields.io/npm/dy/blackbird-ts)
+
 BlackBird, the low-level programming language for continuous variable quantum computing, implemented in TypeScript.
 
 Language documentation is provided by Xanadu [here](https://strawberryfields.readthedocs.io/en/latest/tutorials/blackbird.html).
